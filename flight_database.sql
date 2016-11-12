@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 12, 2016 at 11:58 PM
+-- Host: 127.0.0.1
+-- Generation Time: Nov 13, 2016 at 12:40 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `flightdb`
+-- Database: `flightdatabase`
 --
 
 -- --------------------------------------------------------
@@ -36,29 +36,29 @@ CREATE TABLE `airplane` (
 --
 
 INSERT INTO `airplane` (`modelNumber`, `capacity`) VALUES
-(707, 100),
-(708, 150),
-(709, 200),
-(710, 250),
-(711, 300),
-(713, 100),
-(714, 150),
-(715, 200),
-(716, 250),
-(717, 300),
-(718, 100),
-(719, 150),
-(720, 200),
-(721, 250),
-(722, 300),
-(723, 100),
-(724, 150),
-(725, 200),
-(726, 250),
-(727, 300),
-(728, 100),
-(729, 150),
-(730, 200);
+(707, 68),
+(708, 68),
+(709, 68),
+(710, 68),
+(711, 68),
+(713, 68),
+(714, 68),
+(715, 68),
+(716, 68),
+(717, 68),
+(718, 68),
+(719, 68),
+(720, 68),
+(721, 68),
+(722, 68),
+(723, 68),
+(724, 68),
+(725, 68),
+(726, 68),
+(727, 68),
+(728, 68),
+(729, 68),
+(730, 68);
 
 -- --------------------------------------------------------
 
@@ -163,6 +163,56 @@ CREATE TABLE `flight1` (
   `arrivalTime` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `flight1`
+--
+
+INSERT INTO `flight1` (`flightNumber`, `duration`, `departureDay`, `arrivalDay`, `departureTime`, `arrivalTime`) VALUES
+(1000, 1, 'Monday', 'Monday', '13:00', '14:00'),
+(1001, 1, 'Monday', 'Monday', '13:30', '14:30'),
+(1002, 1, 'Monday', 'Monday', '14:00', '15:00'),
+(1003, 1, 'Monday', 'Monday', '14:30', '15:30'),
+(1004, 1, 'Monday', 'Monday', '14:00', '15:00'),
+(1005, 1, 'Monday', 'Monday', '14:30', '15:30'),
+(1006, 1, 'Monday', 'Monday', '15:00', '16:00'),
+(1007, 1, 'Monday', 'Monday', '15:30', '16:30'),
+(1008, 1, 'Tuesday', 'Tuesday', '13:00', '14:00'),
+(1009, 1, 'Tuesday', 'Tuesday', '13:30', '14:30'),
+(1010, 1, 'Tuesday', 'Tuesday', '14:00', '15:00'),
+(1011, 1, 'Tuesday', 'Tuesday', '14:30', '15:30'),
+(1012, 1, 'Tuesday', 'Tuesday', '15:00', '16:00'),
+(1013, 1, 'Tuesday', 'Tuesday', '14:00', '15:00'),
+(1014, 1, 'Tuesday', 'Tuesday', '14:30', '15:30'),
+(1015, 1, 'Tuesday', 'Tuesday', '15:00', '16:00'),
+(1016, 1, 'Tuesday', 'Tuesday', '15:30', '16:30'),
+(1017, 1, 'Tuesday', 'Tuesday', '16:00', '17:00'),
+(1018, 1, 'Wednesday', 'Wednesday', '13:00', '14:00'),
+(1019, 1, 'Wednesday', 'Wednesday', '13:30', '14:30'),
+(1020, 1, 'Wednesday', 'Wednesday', '14:00', '15:00'),
+(1021, 1, 'Wednesday', 'Wednesday', '14:30', '15:30'),
+(1022, 1, 'Wednesday', 'Wednesday', '14:00', '15:00'),
+(1023, 1, 'Wednesday', 'Wednesday', '14:30', '15:30'),
+(1024, 1, 'Wednesday', 'Wednesday', '15:00', '16:00'),
+(1025, 1, 'Wednesday', 'Wednesday', '15:30', '16:30'),
+(1026, 1, 'Thursday', 'Thursday', '13:00', '14:00'),
+(1027, 1, 'Thursday', 'Thursday', '13:30', '14:30'),
+(1028, 1, 'Thursday', 'Thursday', '14:00', '15:00'),
+(1029, 1, 'Thursday', 'Thursday', '14:30', '15:30'),
+(1030, 1, 'Thursday', 'Thursday', '15:00', '16:00'),
+(1031, 1, 'Thursday', 'Thursday', '14:00', '15:00'),
+(1032, 1, 'Thursday', 'Thursday', '14:30', '15:30'),
+(1033, 1, 'Thursday', 'Thursday', '15:00', '16:00'),
+(1034, 1, 'Thursday', 'Thursday', '15:30', '16:30'),
+(1035, 1, 'Thursday', 'Thursday', '16:00', '17:00'),
+(1036, 1, 'Friday', 'Friday', '13:00', '14:00'),
+(1037, 1, 'Friday', 'Friday', '13:30', '14:30'),
+(1038, 1, 'Friday', 'Friday', '14:00', '15:00'),
+(1039, 1, 'Friday', 'Friday', '14:30', '15:30'),
+(1040, 1, 'Friday', 'Friday', '14:00', '15:00'),
+(1041, 1, 'Friday', 'Friday', '14:30', '15:30'),
+(1042, 1, 'Friday', 'Friday', '15:00', '16:00'),
+(1043, 1, 'Friday', 'Friday', '15:30', '16:30');
+
 -- --------------------------------------------------------
 
 --
@@ -175,6 +225,56 @@ CREATE TABLE `flight2` (
   `arrivingAirport` varchar(100) NOT NULL,
   `departingAirport` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `flight2`
+--
+
+INSERT INTO `flight2` (`flightNumber`, `modelNumber`, `arrivingAirport`, `departingAirport`) VALUES
+(1000, 707, 'San Jose State University', 'Cal Maritime'),
+(1001, 708, 'San Jose State University', 'Cal Poly Pomona'),
+(1002, 709, 'San Jose State University', 'Cal Poly San Luis Obispo'),
+(1003, 710, 'San Jose State University', 'CSU Bakersfield'),
+(1004, 707, 'Cal Maritime', 'San Jose State University'),
+(1005, 708, 'Cal Poly Pomona', 'San Jose State University'),
+(1006, 709, 'Cal Poly San Luis Obispo', 'San Jose State University'),
+(1007, 710, 'CSU Bakersfield', 'San Jose State University'),
+(1008, 711, 'San Jose State University', 'CSU Channel Islands'),
+(1009, 713, 'San Jose State University', 'CSU Chico'),
+(1010, 714, 'San Jose State University', 'CSU Dominguez Hills'),
+(1011, 715, 'San Jose State University', 'CSU East Bay'),
+(1012, 716, 'San Jose State University', 'CSU Fresno'),
+(1013, 711, 'CSU Channel Islands', 'San Jose State University'),
+(1014, 713, 'CSU Chico', 'San Jose State University'),
+(1015, 714, 'CSU Dominguez Hills', 'San Jose State University'),
+(1016, 715, 'CSU East Bay', 'San Jose State University'),
+(1017, 716, 'CSU Fresno', 'San Jose State University'),
+(1018, 717, 'San Jose State University', 'CSU Fullerton'),
+(1019, 718, 'San Jose State University', 'CSU Long Beach'),
+(1020, 719, 'San Jose State University', 'CSU Los Angeles'),
+(1021, 720, 'San Jose State University', 'CSU Monterey Bay'),
+(1022, 717, 'CSU Fullerton', 'San Jose State University'),
+(1023, 718, 'CSU Long Beach', 'San Jose State University'),
+(1024, 719, 'CSU Los Angeles', 'San Jose State University'),
+(1025, 720, 'CSU Monterey Bay', 'San Jose State University'),
+(1026, 721, 'San Jose State University', 'CSU Northridge'),
+(1027, 722, 'San Jose State University', 'CSU Sacramento'),
+(1028, 723, 'San Jose State University', 'CSU San Bernardino'),
+(1029, 724, 'San Jose State University', 'CSU San Marcos'),
+(1030, 725, 'San Jose State University', 'CSU Stanislaus'),
+(1031, 721, 'CSU Northridge', 'San Jose State University'),
+(1032, 722, 'CSU Sacramento', 'San Jose State University'),
+(1033, 723, 'CSU San Bernardino', 'San Jose State University'),
+(1034, 724, 'CSU San Marcos', 'San Jose State University'),
+(1035, 725, 'CSU Stanislaus', 'San Jose State University'),
+(1036, 726, 'San Jose State University', 'Humboldt State University'),
+(1037, 727, 'San Jose State University', 'San Diego State University'),
+(1038, 728, 'San Jose State University', 'San Francisco State University'),
+(1039, 729, 'San Jose State University', 'Sonoma State University'),
+(1040, 726, 'Humboldt State University', 'San Jose State University'),
+(1041, 727, 'San Diego State University', 'San Jose State University'),
+(1042, 728, 'San Francisco State University', 'San Jose State University'),
+(1043, 729, 'Sonoma State University', 'San Jose State University');
 
 -- --------------------------------------------------------
 
