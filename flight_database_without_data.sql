@@ -19,6 +19,19 @@ CREATE TABLE company (
   	PRIMARY KEY (name)
 ) ENGINE=InnoDB;
 
+CREATE TABLE planeManufacturer (
+	modelNumber int(255) NOT NULL,
+	companyName varchar(100) NOT NULL,
+	FOREIGN KEY(modelNumber)
+     	REFERENCES airplane(modelNumber)
+      	ON DELETE CASCADE
+      	ON UPDATE CASCADE,
+  	FOREIGN KEY(companyName)
+      	REFERENCES company(name)
+      	ON DELETE CASCADE
+      	ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
 
 CREATE TABLE flight1 (
   	flightNumber int(255) NOT NULL,
@@ -116,6 +129,7 @@ CREATE TABLE seatbooking2 (
   passengerID int(255) NOT NULL,
   flightNumber int(255) NOT NULL,
   seat varchar(3) NOT NULL,
+  UNIQUE (passengerID, flightNumber),
   FOREIGN KEY(passengerID)
       REFERENCES passenger(passengerID)
       ON DELETE CASCADE
