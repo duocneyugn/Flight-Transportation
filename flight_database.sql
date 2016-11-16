@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2016 at 05:33 AM
+-- Generation Time: Nov 16, 2016 at 06:39 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -926,12 +926,6 @@ INSERT INTO `seatbooking1` (`seat`, `seatPreference`, `serviceClass`) VALUES
 ('1B', 'Aisle', 'First'),
 ('1C', 'Aisle', 'First'),
 ('1D', 'Window', 'First'),
-('20A', 'Window', 'Economy'),
-('20B', 'Center', 'Economy'),
-('20C', 'Aisle', 'Economy'),
-('20D', 'Aisle', 'Economy'),
-('20E', 'Center', 'Economy'),
-('20F', 'Window', 'Economy'),
 ('2A', 'Window', 'First'),
 ('2B', 'Aisle', 'First'),
 ('2C', 'Aisle', 'First'),
