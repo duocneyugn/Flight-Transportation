@@ -49,6 +49,7 @@ CREATE TABLE flight2 (
 	modelNumber int(255) NOT NULL,
 	arrivingAirport varchar(100) NOT NULL,
 	departingAirport varchar(100) NOT NULL,
+  UNIQUE (modelNumber, flightNumber),
 	FOREIGN KEY(modelNumber)
      	REFERENCES airplane(modelNumber)
       	ON DELETE CASCADE

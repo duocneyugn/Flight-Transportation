@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2016 at 05:19 AM
+-- Generation Time: Nov 16, 2016 at 05:33 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -232,48 +232,48 @@ CREATE TABLE `flight2` (
 
 INSERT INTO `flight2` (`flightNumber`, `modelNumber`, `arrivingAirport`, `departingAirport`) VALUES
 (1000, 707, 'San Jose State University', 'Cal Maritime'),
-(1001, 708, 'San Jose State University', 'Cal Poly Pomona'),
-(1002, 709, 'San Jose State University', 'Cal Poly San Luis Obispo'),
-(1003, 710, 'San Jose State University', 'CSU Bakersfield'),
 (1004, 707, 'Cal Maritime', 'San Jose State University'),
+(1001, 708, 'San Jose State University', 'Cal Poly Pomona'),
 (1005, 708, 'Cal Poly Pomona', 'San Jose State University'),
+(1002, 709, 'San Jose State University', 'Cal Poly San Luis Obispo'),
 (1006, 709, 'Cal Poly San Luis Obispo', 'San Jose State University'),
+(1003, 710, 'San Jose State University', 'CSU Bakersfield'),
 (1007, 710, 'CSU Bakersfield', 'San Jose State University'),
 (1008, 711, 'San Jose State University', 'CSU Channel Islands'),
-(1009, 713, 'San Jose State University', 'CSU Chico'),
-(1010, 714, 'San Jose State University', 'CSU Dominguez Hills'),
-(1011, 715, 'San Jose State University', 'CSU East Bay'),
-(1012, 716, 'San Jose State University', 'CSU Fresno'),
 (1013, 711, 'CSU Channel Islands', 'San Jose State University'),
+(1009, 713, 'San Jose State University', 'CSU Chico'),
 (1014, 713, 'CSU Chico', 'San Jose State University'),
+(1010, 714, 'San Jose State University', 'CSU Dominguez Hills'),
 (1015, 714, 'CSU Dominguez Hills', 'San Jose State University'),
+(1011, 715, 'San Jose State University', 'CSU East Bay'),
 (1016, 715, 'CSU East Bay', 'San Jose State University'),
+(1012, 716, 'San Jose State University', 'CSU Fresno'),
 (1017, 716, 'CSU Fresno', 'San Jose State University'),
 (1018, 717, 'San Jose State University', 'CSU Fullerton'),
-(1019, 718, 'San Jose State University', 'CSU Long Beach'),
-(1020, 719, 'San Jose State University', 'CSU Los Angeles'),
-(1021, 720, 'San Jose State University', 'CSU Monterey Bay'),
 (1022, 717, 'CSU Fullerton', 'San Jose State University'),
+(1019, 718, 'San Jose State University', 'CSU Long Beach'),
 (1023, 718, 'CSU Long Beach', 'San Jose State University'),
+(1020, 719, 'San Jose State University', 'CSU Los Angeles'),
 (1024, 719, 'CSU Los Angeles', 'San Jose State University'),
+(1021, 720, 'San Jose State University', 'CSU Monterey Bay'),
 (1025, 720, 'CSU Monterey Bay', 'San Jose State University'),
 (1026, 721, 'San Jose State University', 'CSU Northridge'),
-(1027, 722, 'San Jose State University', 'CSU Sacramento'),
-(1028, 723, 'San Jose State University', 'CSU San Bernardino'),
-(1029, 724, 'San Jose State University', 'CSU San Marcos'),
-(1030, 725, 'San Jose State University', 'CSU Stanislaus'),
 (1031, 721, 'CSU Northridge', 'San Jose State University'),
+(1027, 722, 'San Jose State University', 'CSU Sacramento'),
 (1032, 722, 'CSU Sacramento', 'San Jose State University'),
+(1028, 723, 'San Jose State University', 'CSU San Bernardino'),
 (1033, 723, 'CSU San Bernardino', 'San Jose State University'),
+(1029, 724, 'San Jose State University', 'CSU San Marcos'),
 (1034, 724, 'CSU San Marcos', 'San Jose State University'),
+(1030, 725, 'San Jose State University', 'CSU Stanislaus'),
 (1035, 725, 'CSU Stanislaus', 'San Jose State University'),
 (1036, 726, 'San Jose State University', 'Humboldt State University'),
-(1037, 727, 'San Jose State University', 'San Diego State University'),
-(1038, 728, 'San Jose State University', 'San Francisco State University'),
-(1039, 729, 'San Jose State University', 'Sonoma State University'),
 (1040, 726, 'Humboldt State University', 'San Jose State University'),
+(1037, 727, 'San Jose State University', 'San Diego State University'),
 (1041, 727, 'San Diego State University', 'San Jose State University'),
+(1038, 728, 'San Jose State University', 'San Francisco State University'),
 (1042, 728, 'San Francisco State University', 'San Jose State University'),
+(1039, 729, 'San Jose State University', 'Sonoma State University'),
 (1043, 729, 'Sonoma State University', 'San Jose State University');
 
 -- --------------------------------------------------------
@@ -1603,7 +1603,7 @@ ALTER TABLE `flight1`
 -- Indexes for table `flight2`
 --
 ALTER TABLE `flight2`
-  ADD KEY `modelNumber` (`modelNumber`),
+  ADD UNIQUE KEY `modelNumber` (`modelNumber`,`flightNumber`),
   ADD KEY `flightNumber` (`flightNumber`),
   ADD KEY `arrivingAirport` (`arrivingAirport`),
   ADD KEY `departingAirport` (`departingAirport`);
