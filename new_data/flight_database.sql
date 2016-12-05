@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2016 at 01:14 AM
+-- Generation Time: Dec 05, 2016 at 02:23 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -3346,6 +3346,46 @@ INSERT INTO `flight` (`flightNumber`, `departureDateTime`, `arrivalDateTime`) VA
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `manufactured`
+--
+
+CREATE TABLE `manufactured` (
+  `modelNumber` int(255) NOT NULL,
+  `companyName` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `manufactured`
+--
+
+INSERT INTO `manufactured` (`modelNumber`, `companyName`) VALUES
+(710, 'Cal Poly Pomona'),
+(708, 'California Institute of Technology'),
+(711, 'Cerro Coso Community College'),
+(713, 'College of Alameda'),
+(709, 'CSU Los Angeles'),
+(714, 'De Anza College'),
+(717, 'Glendale Community College'),
+(718, 'Long Beach City College'),
+(721, 'Monterey Peninsula College'),
+(722, 'Mt. San Antonio College'),
+(723, 'Reedley College'),
+(724, 'Sacramento City College'),
+(725, 'Saddleback College'),
+(726, 'San Bernardino Valley College'),
+(727, 'San Diego State University'),
+(728, 'San Jose State University'),
+(730, 'Stanford University'),
+(707, 'University of California Berkley'),
+(715, 'University of California Davis'),
+(729, 'University of California Irvine'),
+(720, 'University of California Los Angeles'),
+(719, 'University of California San Diego'),
+(716, 'University of Southern California');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `nonstaff`
 --
 
@@ -4619,6 +4659,13 @@ ALTER TABLE `flight`
   ADD PRIMARY KEY (`flightNumber`);
 
 --
+-- Indexes for table `manufactured`
+--
+ALTER TABLE `manufactured`
+  ADD PRIMARY KEY (`modelNumber`),
+  ADD KEY `companyName` (`companyName`);
+
+--
 -- Indexes for table `nonstaff`
 --
 ALTER TABLE `nonstaff`
@@ -4692,6 +4739,13 @@ ALTER TABLE `contains`
 ALTER TABLE `departsat`
   ADD CONSTRAINT `departsat_ibfk_1` FOREIGN KEY (`school`) REFERENCES `airport` (`school`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `departsat_ibfk_2` FOREIGN KEY (`flightNumber`) REFERENCES `flight` (`flightNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `manufactured`
+--
+ALTER TABLE `manufactured`
+  ADD CONSTRAINT `manufactured_ibfk_1` FOREIGN KEY (`modelNumber`) REFERENCES `airplane` (`modelNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `manufactured_ibfk_2` FOREIGN KEY (`companyName`) REFERENCES `company` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `nonstaff`

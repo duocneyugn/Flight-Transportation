@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS Reserves, Contains, Operates, Uses, ArrivesAt, DepartsAt;
+DROP TABLE IF EXISTS Reserves, Contains, Operates, Uses, ArrivesAt, DepartsAt, Manufactured;
 DROP TABLE IF EXISTS nonstaff, staff,  passenger, seat, flight, airport, airplane, company;
 
 CREATE TABLE passenger (
@@ -80,6 +80,20 @@ CREATE TABLE Reserves (
 	REFERENCES seat(serviceClass)
 	ON DELETE CASCADE
     	ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE Manufactured (
+  modelNumber int(255) NOT NULL,
+  companyName varchar(100) NOT NULL,
+  PRIMARY KEY (modelNumber),
+  FOREIGN KEY(modelNumber)
+      REFERENCES airplane(modelNumber)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY(companyName)
+        REFERENCES company(name)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE Contains (

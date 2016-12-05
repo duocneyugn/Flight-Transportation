@@ -2,9 +2,10 @@
 <html>
 	<head>
 		<title>Flight Database</title>
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="shortcut icon" href="./flight_icon.png" type="image/x-icon"/>
 
-         <style>
+        <style>
          	table, th, td {
 			   	border: 1px solid black;
 			}
@@ -12,7 +13,7 @@
 			th, td{
 				padding: 0px 15px 0px 15px;
 			}
-         </style>
+        </style>
 	</head>
 
 	<body>
@@ -47,31 +48,39 @@
 			</ol>
 			<hr/>
 
-
-
 			<center><h3>Queries</h3></center>
 			<ol>
-				<li><a href="/flight_database/index.php/?query=SELECT name FROM passenger, seatbooking2 WHERE passenger.passengerID = seatbooking2.passengerID AND flightNumber=1010 GROUP BY name;" >Query 1 - </a>Find passengers who booked a seat on flight 1010</li>
-				<li><a href="/flight_database/index.php/?query=SELECT Flight1.flightNumber, departureDay, arrivalDay, departureTime, arrivalTime FROM Flight1, Flight2 WHERE Flight1.flightNumber = Flight2.flightNumber AND arrivingAirport = 'Cal Poly Pomona';" >Query 2 - </a>Find departureDay, arrivalDay, departure/arrivalTime for flights going to
-	Cal Poly Ponoma</li>
-				<li><a href="/flight_database/index.php/?query=SELECT airplane.capacity - COUNT(passengerID) FROM flight2, seatbooking2, airplane WHERE flight2.flightNumber = seatbooking2.flightNumber AND flight2.modelNumber = airplane.modelNumber AND flight2.arrivingAirport = 'CSU Los Angeles';">Query 3 - </a>Count number of available seats for a flight going to CSU Los Angeles</li>
-				<li><a href="/flight_database/index.php/?query=SELECT COUNT(passengerID) FROM Flight2, seatbooking2 WHERE Flight2.flightNumber = seatbooking2.flightNumber AND arrivingAirport = 'CSU Los Angeles';" >Query 4 - </a>Count number of booked seats for a flight going to CSU Los Angeles</li>
-				<li><a href="/flight_database/index.php/?query=SELECT flight2.departingAirport FROM flight1, flight2 WHERE flight1.flightNumber = flight2.flightNumber AND flight2.arrivingAirport = 'San Jose State University' AND flight1.arrivalDay = 'Wednesday';" >Query 5 - </a>Find airports who are flying flights to San Jose on Wednesday</li>
-				<li><a href="/flight_database/index.php/?query=SELECT companyName FROM PlaneManufacturer WHERE modelNumber = '728';" >Query 6 - </a>Find the company name that manufactured flight 728</li>
-				<li><a href="/flight_database/index.php/?query=SELECT Passenger.name FROM Staff1, Staff2, Passenger, FlightStaff WHERE Staff1.employeeID = Staff2.employeeID AND Staff2. employeeID = FlightStaff.employeeID AND Staff2.passengerID = Passenger.passengerID AND Staff1.employeePosition = 'pilot' AND FlightStaff.flightNumber = 1024;" >Query 7 - </a>Find the names of the pilots operating flight 1024</li>
-				<li><a href="/flight_database/index.php/?query=SELECT Passenger.name FROM Staff1, Staff2, Passenger, FlightStaff WHERE Staff1.employeeID = Staff2.employeeID AND Staff2. employeeID = FlightStaff.employeeID AND Staff2.passengerID = Passenger.passengerID AND Staff1.employeePosition = 'flight attendant' AND FlightStaff.flightNumber = 1024;" >Query 8 - </a>Find the names of the flight attendants operating flight 1024</li>
-				<li><a href="/flight_database/index.php/?query=SELECT Passenger.name FROM Staff2, SeatBooking2, Passenger WHERE Staff2.passengerID = SeatBooking2.passengerID AND Staff2.passengerID = Passenger.passengerID ORDER BY Passenger.name;" >Query 9 - </a>Find the names of staffs who also booked a flight</li>
-				<li><a href="/flight_database/index.php/?query=SELECT COUNT(flightNumber) FROM FlightStaff WHERE FlightStaff.employeeID = '6454';" >Query 10 - </a>Count the number of flights operated by employee 6454</li>
-				<li><a href="/flight_database/index.php/?query=SELECT COUNT(Flight1.flightNumber) FROM Flight1, Flight2 WHERE Flight1.flightNumber = Flight2.flightNumber AND Flight2.arrivingAirport = 'San Jose State University' and Flight1.arrivalDay = 'Tuesday';" >Query 11 - </a>Count the number of flights arriving to San Jose on a Tuesday</li>
-				<li><a href="/flight_database/index.php/?query=SELECT COUNT(Airport.school) FROM Airport, PlaneManufacturer WHERE Airport.school = PlaneManufacturer.companyName ORDER BY Airport.school;" >Query 12 - </a>Count the number of CSUs that are both airports and airplane
-	manufacturers</li>
-				<li><a href="/flight_database/index.php/?query=SELECT DISTINCT Flight2.arrivingAirport FROM PlaneManufacturer, Flight2 WHERE Flight2.modelNumber = PlaneManufacturer.modelNumber AND PlaneManufacturer.companyName = 'San Jose State University' ORDER BY Flight2.arrivingAirport;" >Query 13 - </a>Find all city names that SJSU company’s plane flies to</li>
-				<li><a href="/flight_database/index.php/?query=SELECT modelNumber FROM Airplane WHERE modelNumber NOT IN( SELECT modelNumber FROM Flight2 ) ORDER BY Airplane.modelNumber;" >Query 14 - </a>Find airplanes models that are not flown in flights</li>
-				<li><a href="/flight_database/index.php/?query=SELECT name FROM Company WHERE Company.name NOT IN ( SELECT companyName FROM PlaneManufacturer ) ORDER BY Company.name;" >Query 15 - </a>Find company names who have not manufactured any planes</li>
+				<li><a href="/flight_database/index.php/?query=SELECT name FROM passenger, reserves WHERE passenger.passengerID = reserves.passengerID AND flightNumber = 1010 GROUP BY name;" >Query 1 - </a>Find passengers who reserved a seat on flight 1010</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT flight.flightNumber, departureDateTime, arrivalDateTime FROM flight, arrivesat WHERE flight.flightNumber = arrivesat.flightNumber AND arrivesat.school='Cal Poly Pomona'">Query 2 - </a>Find departureDateTime and arrivalDateTime for flights going to Cal Poly Pomona</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT airplane.capacity - COUNT(passengerID) FROM airplane, reserves, arrivesat, uses WHERE arrivesat.school = 'CSU Los Angeles' AND uses.modelNumber = airplane.modelNumber AND uses.flightNumber = arrivesat.flightNumber AND arrivesat.flightNumber = reserves.flightNumber">Query 3 - </a>Count number of available seats for a flight going to CSU Los Angeles</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT COUNT(passengerID) FROM reserves, arrivesat WHERE arrivesat.school = 'CSU Los Angeles' AND arrivesat.flightNumber = reserves.flightNumber" >Query 4 - </a>Count number of booked seats for a flight going to CSU Los Angeles</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT departsat.school FROM arrivesat, departsat, flight WHERE arrivesat.flightNumber = departsat.flightNumber AND flight.flightNumber = departsat.flightNumber AND arrivesat.school='San Jose State University' AND flight.departureDateTime LIKE '2016-12-14%'">Query 5 - </a>Find airports who are flying flights to San Jose on 12/14/2016</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT companyName FROM manufactured WHERE manufactured.modelNumber=728">Query 6 - </a>Find the company name that manufactured flight 728</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT passenger.name FROM passenger, staff, operates WHERE staff.passengerID=passenger.passengerID AND staff.employeeID=operates.employeeID AND staff.employeePosition='pilot' AND operates.flightNumber=1024">Query 7 - </a>Find the names of the pilots operating flight 1024</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT passenger.name FROM passenger, staff, operates WHERE staff.passengerID=passenger.passengerID AND staff.employeeID=operates.employeeID AND staff.employeePosition='flight attendant' AND operates.flightNumber=1024">Query 8 - </a>Find the names of the flight attendants operating flight 1024</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT Passenger.name FROM staff, reserves, passenger WHERE staff.passengerID = reserves.passengerID AND staff.passengerID = passenger.passengerID ORDER BY Passenger.name">Query 9 - </a>Find the names of staffs who also booked a flight</li><!--SKIPPED-->
+
+				<li><a href="/flight_database/index.php/?query=SELECT COUNT(flightNumber) FROM operates WHERE operates.employeeID = 6454">Query 10 - </a>Count the number of flights operated by employee 6454</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT COUNT(flight.flightNumber) FROM arrivesat, flight WHERE flight.flightNumber = arrivesat.flightNumber AND arrivesat.school='San Jose State University' AND flight.arrivalDateTime LIKE '2016-12-13%'">Query 11 - </a>Count the number of flights arriving to San Jose on 12/13/2016</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT COUNT(Airport.school) FROM airport, manufactured WHERE airport.school = manufactured.companyName ORDER BY Airport.school">Query 12 - </a>Count the number of CSUs that are both airports and airplane manufacturers</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT DISTINCT airport.city FROM manufactured, arrivesat, uses, airport WHERE arrivesat.flightNumber = uses.flightNumber AND uses.modelNumber = manufactured.modelNumber AND manufactured.companyName = 'San Jose State University' ANd airport.school = arrivesat.school ORDER BY airport.city">Query 13 - </a>Find all city names that SJSU company’s plane flies to</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT modelNumber FROM Airplane WHERE modelNumber NOT IN ( SELECT modelNumber FROM uses ) ORDER BY Airplane.modelNumber">Query 14 - </a>Find airplanes models that are not used in flights</li>
+
+				<li><a href="/flight_database/index.php/?query=SELECT name FROM company WHERE company.name NOT IN ( SELECT companyName FROM manufactured ) ORDER BY company.name">Query 15 - </a>Find company names who have not manufactured any planes</li>
 			</ol>
 			<hr/>
-
-
 
 			<center><h3>Ad-hoc Query</h3></center>
 			<FORM METHOD=GET ACTION="">
@@ -90,8 +99,6 @@
 				</div>
 			</FORM>
 
-
-
 			<div class="col-md-12">
 			<hr/>
 				<?php
@@ -99,7 +106,7 @@
 					{
 						echo "<center>";
 						echo "<center><h3>Result</h3></center>";
-						print "<b>You Queried: </b>".$_REQUEST['query']."<br/>";
+						print "<b>You Queried:</b><br/>".$_REQUEST['query']."<br/><br/>";
 						// print $_REQUEST['query']."<br/>";
 						echo "<a href=\"/flight_database/index.php/\">Reset Query?</a>";
 						$result = mysqli_query($connection, $_REQUEST['query']);
