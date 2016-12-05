@@ -87,21 +87,12 @@ CREATE TABLE nonstaff (
 
 
 CREATE TABLE staff1 (
+	passengerID int(255) NOT NULL,
   	employeeID int(255) NOT NULL,
   	employeePosition varchar(50) NOT NULL,
-  	PRIMARY KEY (employeeID)
-) ENGINE=InnoDB;
-
-
-CREATE TABLE staff2 (
-  	passengerID int(255) NOT NULL,
-  	employeeID int(255) NOT NULL,
+  	PRIMARY KEY (employeeID),
   	FOREIGN KEY(passengerID)
       	REFERENCES passenger(passengerID)
-      	ON DELETE CASCADE
-      	ON UPDATE CASCADE,
-    FOREIGN KEY(employeeID)
-      	REFERENCES staff1(employeeID)
       	ON DELETE CASCADE
       	ON UPDATE CASCADE
 ) ENGINE=InnoDB;
