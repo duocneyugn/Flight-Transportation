@@ -14,6 +14,11 @@
 
 		th, td{
 			padding: 0px 15px 0px 15px;
+			background-color: #F0F0F0;
+		}
+
+		td{
+			background-color: #FFFFFF;
 		}
 
 		body {
@@ -73,23 +78,23 @@
 
 		<center><h2>Queries</h2></center>
 		<ol>
-			<li><a href="/flight_database/index.php?query=SELECT name FROM passenger, reserves WHERE passenger.passengerID = reserves.passengerID AND flightNumber = 1010 GROUP BY name;" >Query 1 - </a>Find passengers who reserved a seat on flight 1010</li>
+			<li><a href="/flight_database/index.php?query=SELECT name, passenger.passengerID, reserves.flightNumber, reserves.seat FROM passenger, reserves WHERE passenger.passengerID = reserves.passengerID AND flightNumber = 1010 GROUP BY name;" >Query 1 - </a>Find passengers who reserved a seat on flight 1010</li>
 
-			<li><a href="/flight_database/index.php?query=SELECT flight.flightNumber, departureDateTime, arrivalDateTime FROM flight, arrivesat WHERE flight.flightNumber = arrivesat.flightNumber AND arrivesat.school='Cal Poly Pomona'">Query 2 - </a>Find departureDateTime and arrivalDateTime for flights going to Cal Poly Pomona</li>
+			<li><a href="/flight_database/index.php?query=SELECT flight.flightNumber, departsat.school, departureDateTime, arrivalDateTime FROM flight, arrivesat, departsat WHERE flight.flightNumber = arrivesat.flightNumber AND flight.flightNumber = departsat.flightNumber AND arrivesat.school='Cal Poly Pomona'">Query 2 - </a>Find departureDateTime and arrivalDateTime for flights going to Cal Poly Pomona</li>
 
-			<li><a href="/flight_database/index.php?query=SELECT airplane.capacity - COUNT(passengerID) FROM airplane, reserves, arrivesat, uses WHERE arrivesat.school = 'CSU Los Angeles' AND uses.modelNumber = airplane.modelNumber AND uses.flightNumber = arrivesat.flightNumber AND arrivesat.flightNumber = reserves.flightNumber">Query 3 - </a>Count number of available seats for a flight going to CSU Los Angeles</li>
+			<li><a href="/flight_database/index.php?query=SELECT reserves.flightNumber, airplane.capacity - COUNT(passengerID) as availableSeats FROM airplane, reserves, arrivesat, uses WHERE arrivesat.school = 'CSU Los Angeles' AND uses.modelNumber = airplane.modelNumber AND uses.flightNumber = arrivesat.flightNumber AND arrivesat.flightNumber = reserves.flightNumber">Query 3 - </a>Count number of available seats for a flight going to CSU Los Angeles</li>
 
-			<li><a href="/flight_database/index.php?query=SELECT COUNT(passengerID) FROM reserves, arrivesat WHERE arrivesat.school = 'CSU Los Angeles' AND arrivesat.flightNumber = reserves.flightNumber" >Query 4 - </a>Count number of booked seats for a flight going to CSU Los Angeles</li>
+			<li><a href="/flight_database/index.php?query=SELECT reserves.flightNumber, COUNT(passengerID) as reservedSeats FROM reserves, arrivesat WHERE arrivesat.school = 'CSU Los Angeles' AND arrivesat.flightNumber = reserves.flightNumber" >Query 4 - </a>Count number of booked seats for a flight going to CSU Los Angeles</li>
 
 			<li><a href="/flight_database/index.php?query=SELECT departsat.school FROM arrivesat, departsat, flight WHERE arrivesat.flightNumber = departsat.flightNumber AND flight.flightNumber = departsat.flightNumber AND arrivesat.school='San Jose State University' AND flight.departureDateTime LIKE '2016-12-14%'">Query 5 - </a>Find airports who are flying flights to San Jose on 12/14/2016</li>
 
 			<li><a href="/flight_database/index.php?query=SELECT companyName FROM manufactured WHERE manufactured.modelNumber=728">Query 6 - </a>Find the company name that manufactured flight 728</li>
 
-			<li><a href="/flight_database/index.php?query=SELECT passenger.name FROM passenger, staff, operates WHERE staff.passengerID=passenger.passengerID AND staff.employeeID=operates.employeeID AND staff.employeePosition='pilot' AND operates.flightNumber=1024">Query 7 - </a>Find the names of the pilots operating flight 1024</li>
+			<li><a href="/flight_database/index.php?query=SELECT staff.employeeID, passenger.name FROM passenger, staff, operates WHERE staff.passengerID=passenger.passengerID AND staff.employeeID=operates.employeeID AND staff.employeePosition='pilot' AND operates.flightNumber=1024">Query 7 - </a>Find the pilots operating flight 1024</li>
 
-			<li><a href="/flight_database/index.php?query=SELECT passenger.name FROM passenger, staff, operates WHERE staff.passengerID=passenger.passengerID AND staff.employeeID=operates.employeeID AND staff.employeePosition='flight attendant' AND operates.flightNumber=1024">Query 8 - </a>Find the names of the flight attendants operating flight 1024</li>
+			<li><a href="/flight_database/index.php?query=SELECT staff.employeeID, passenger.name FROM passenger, staff, operates WHERE staff.passengerID=passenger.passengerID AND staff.employeeID=operates.employeeID AND staff.employeePosition='flight attendant' AND operates.flightNumber=1024">Query 8 - </a>Find the flight attendants operating flight 1024</li>
 
-			<li><a href="/flight_database/index.php?query=SELECT Passenger.name FROM staff, reserves, passenger WHERE staff.passengerID = reserves.passengerID AND staff.passengerID = passenger.passengerID ORDER BY Passenger.name">Query 9 - </a>Find the names of staffs who also booked a flight</li><!--SKIPPED-->
+			<li><a href="/flight_database/index.php?query=SELECT DISTINCT Staff.employeeID, Passenger.passengerID, Passenger.name, reserves.flightNumber FROM staff, reserves, passenger WHERE staff.passengerID = reserves.passengerID AND staff.passengerID = passenger.passengerID ORDER BY Passenger.name">Query 9 - </a>Find the staffs who also booked a flight</li>
 
 			<li><a href="/flight_database/index.php?query=SELECT COUNT(flightNumber) FROM operates WHERE operates.employeeID = 6454">Query 10 - </a>Count the number of flights operated by employee 6454</li>
 
